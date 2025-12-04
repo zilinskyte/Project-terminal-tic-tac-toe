@@ -1,4 +1,4 @@
-import { checkIfNoMovesLeft } from './board-printer.js';
+import { checkIfNoMovesLeft } from "./board-printer.js";
 
 /*
     Example board:
@@ -17,7 +17,25 @@ import { checkIfNoMovesLeft } from './board-printer.js';
     Return true if the player has made a move in all 3 squares in the row
     Otherwise, return false
 */
-function checkRow(board, player, rowNumber) {
+export function checkRow(board, player, rowNumber) {
+  //given a row 0, check 0,0 for player value, then check 0,1 for player value, then check 0,2 for player value
+  //if all three have player value then return true
+  //else return false
+  if (rowNumber < 3) {
+    if (
+      board[rowNumber][0] === player &&
+      board[rowNumber][1] === player &&
+      board[rowNumber][2] === player
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    throw new Error(
+      "error invalid rowNumber, expecting number between 0, 1 or 2"
+    );
+  }
 }
 
 /*
@@ -28,7 +46,26 @@ function checkRow(board, player, rowNumber) {
     Return true if the player has made a move in all 3 squares in the column
     Otherwise, return false
 */
-function checkColumn(board, player, columnNumber) {
+export function checkColumn(board, player, columnNumber) {
+  //given a column 0, check 0,0 for player value, then check 1,0 for player value, then check 2,0 for player value
+  //if all three have player value then return true
+  //else return false
+
+  if (columnNumber < 3) {
+    if (
+      board[0][columnNumber] === player &&
+      board[1][columnNumber] === player &&
+      board[2][columnNumber] === player
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    throw new Error(
+      "error invalid columnNumber, expecting number between 0, 1 or 2"
+    );
+  }
 }
 
 /*
@@ -38,44 +75,61 @@ function checkColumn(board, player, columnNumber) {
     Return true if the player has made a move in 3 diagonal squares
     Otherwise, return false
 */
-function checkDiagonal(board, player) {
-    // It may be easier to use an if statement than a loop here
+export function checkDiagonal(board, player) {
+  // It may be easier to use an if statement than a loop here
+  //check 0,0 for player value, then check 1,1 for player value, then check 2,2 for player value
+  //if all three have player value then return true
+  //else return false
+  if (
+    board[0][0] === player &&
+    board[1][1] === player &&
+    board[2][2] === player
+  ) {
+    return true;
+  } else if (
+    board[0][2] === player &&
+    board[1][1] === player &&
+    board[2][0] === player
+  ) {
+    return true;
+  } else {
+    return false;
+  }
 }
-
 
 /*
     There is no need to change any code below this line.
 */
 
-function checkIfPlayerWon(board, player) {
-    for(let i = 0; i <= 2; i++) {
-        if(checkRow(board, player, i) || checkColumn(board, player, i)) {
-            return true;
-        }
+export function checkIfPlayerWon(board, player) {
+  for (let i = 0; i <= 2; i++) {
+    if (checkRow(board, player, i) || checkColumn(board, player, i)) {
+      return true;
     }
+  }
 
-    if(checkDiagonal(board, player)) {
-        return true;
-    }
+  if (checkDiagonal(board, player)) {
+    return true;
+  }
 
-    return false;
+  return false;
 }
 
 export function isGameOver(board) {
-    if(checkIfPlayerWon(board, 'X')) {
-        console.log('X has won the game!\n');
-        return true;
-    }
+  if (checkIfPlayerWon(board, "X")) {
+    console.log("X has won the game!\n");
+    return true;
+  }
 
-    if(checkIfPlayerWon(board, 'O')) {
-        console.log('O has won the game!\n');
-        return true;
-    }
+  if (checkIfPlayerWon(board, "O")) {
+    console.log("O has won the game!\n");
+    return true;
+  }
 
-    if(checkIfNoMovesLeft(board)) {
-        console.log('Game Over - It\s a tie!\n');
-        return true;
-    }
+  if (checkIfNoMovesLeft(board)) {
+    console.log("Game Over - Its a tie!\n");
+    return true;
+  }
 
-    return false;
+  return false;
 }
