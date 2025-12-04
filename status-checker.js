@@ -133,25 +133,3 @@ export function isGameOver(board) {
 
   return false;
 }
-
-let board = [
-  ["X", "X", "X"],
-  ["O", "O", "_"],
-  ["O", "O", "X"],
-];
-
-let board2 = [
-  ["O", "O", "X"],
-  ["O", "X", "O"],
-  ["O", "X", "X"],
-];
-
-let board3 = [
-  ["X", "_", "_"],
-  ["_", "X", "_"],
-  ["O", "O", "X"],
-];
-
-console.log(`the value for check row is ${checkRow(board, "X", 0)}
-and the value for check row is ${checkColumn(board2, "O", 0)} 
-and the value for check diagonal is ${checkDiagonal(board3, "X")} `);
