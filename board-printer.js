@@ -17,20 +17,22 @@
 */
 
 let board = [
-    [' ', ' ', ' '],
-    [' ', ' ', ' '],
-    [' ', ' ', ' ']
-]
+  [" ", " ", " "],
+  [" ", " ", " "],
+  [" ", " ", " "],
+];
 
-export function printBoard(board) {
-    for (let i = 0; i < board.length; i++) { // loop array of 3 arrays
-        const rowString = board[i].map(cell => ` ${cell} `).join('|'); // map each cell to a string with spaces and join with '|'
-        console.log(rowString); // print the row string
-        if (i < board.length - 1) {
-            console.log('-----------'); // print separator after each row except the last
-        }
+function printBoard(board) {
+  // Setting parameter board within the function printBoard
+  for (let i = 0; i < board.length; i++) {
+    // loop array of 3 arrays, adds count of one to index
+    const rowString = board[i].map((cell) => ` ${cell} `).join("|"); // map each cell to a string with spaces and join with '|'
+    console.log(rowString); // print the row string
+    if (i < board.length - 1) {
+      console.log("-----------"); // print separator after each row except the last
     }
-};
+  }
+}
 printBoard(board);
 
 /*
@@ -38,13 +40,13 @@ printBoard(board);
         - return true if there are no moves left to make (there are no more '_' values)
         - return false if there are still moves that can be made
 */
-export function checkIfNoMovesLeft(board) {
-    for (let row of board) {
-        for (let cell of row) {
-            if (cell === '_') {
-                return false;
-            }
-        }
+function checkIfNoMovesLeft(board) {
+  for (let row of board) {
+    for (let cell of row) {
+      if (cell === " ") {
+        return false;
+      }
     }
-    return true;
+  }
+  return true;
 }
