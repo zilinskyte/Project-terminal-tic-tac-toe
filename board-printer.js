@@ -17,12 +17,12 @@
 */
 
 let board = [
-  [" ", " ", " "],
-  [" ", " ", " "],
-  [" ", " ", " "],
+  ["_", "_", "_"],
+  ["_", "_", "_"],
+  ["_", "_", "_"],
 ];
 
-function printBoard(board) {
+ export function printBoard(board) {
   // Setting parameter board within the function printBoard
   for (let i = 0; i < board.length; i++) {
     // loop array of 3 arrays, adds count of one to index
@@ -43,7 +43,7 @@ printBoard(board);
  export function checkIfNoMovesLeft(board) {
   for (let row of board) {
     for (let cell of row) {
-      if (cell === " ") {
+      if (cell === "_") {
         return false;
       }
     }
